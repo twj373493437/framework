@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wdkj.web.dao.dictionary.DictionaryValueMapper">
+
+<!--auto generated Code-->
+    <resultMap id="AllColumnMap" type="com.wdkj.web.model.dictionary.DictionaryValue">
+        <result column="key" property="key"/>
+        <result column="value" property="value"/>
+        <result column="id" property="id"/>
+        <result column="show_text" property="showText"/>
+        <result column="description" property="description"/>
+        <result column="dict_head_id" property="dictHeadId"/>
+        <result column="sort" property="sort"/>
+    </resultMap>
+
+<!--auto generated Code-->
+    <sql id="all_column">
+        key,
+        value,
+        id,
+        show_text,
+        description,
+        dict_head_id,
+        sort
+    </sql>
+
+<!--auto generated Code-->
+    <insert id="insert">
+        INSERT INTO dictionary_value
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="key != null"> key, </if>
+            <if test="value != null"> value, </if>
+            <if test="id != null"> id, </if>
+            <if test="showText != null"> show_text, </if>
+            <if test="description != null"> description, </if>
+            <if test="dictHeadId != null"> dict_head_id, </if>
+            <if test="sort != null"> sort, </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="key != null"> #{key}, </if>
+            <if test="value != null"> #{value}, </if>
+            <if test="id != null"> #{id}, </if>
+            <if test="showText != null"> #{showText}, </if>
+            <if test="description != null"> #{description}, </if>
+            <if test="dictHeadId != null"> #{dictHeadId}, </if>
+            <if test="sort != null"> #{sort}, </if>
+        </trim>
+    </insert>
+
+<!--auto generated Code-->
+    <insert id="insertList">
+        INSERT INTO dictionary_value(
+        <include refid="all_column"/>
+        )VALUES
+        <foreach collection="pojos" item="pojo" index="index" separator=",">
+            (
+            #{key},
+            #{value},
+            #{id},
+            #{showText},
+            #{description},
+            #{dictHeadId},
+            #{sort}
+            )
+        </foreach>
+    </insert>
+
+<!--auto generated Code-->
+    <update id="update">
+        UPDATE dictionary_value
+        <set>
+            <if test="key != null"> key = #{key}, </if>
+            <if test="value != null"> value = #{value}, </if>
+            <if test="id != null"> id = #{id}, </if>
+            <if test="showText != null"> show_text = #{showText}, </if>
+            <if test="description != null"> description = #{description}, </if>
+            <if test="dictHeadId != null"> dict_head_id = #{dictHeadId}, </if>
+            <if test="sort != null"> sort = #{sort} </if>
+        </set>
+         WHERE id = #{id}
+    </update>
+
+<!--auto generated Code-->
+    <select id="select" resultMap="AllColumnMap">
+        SELECT <include refid="all_column"/>
+        FROM dictionary_value
+        <where>
+            <if test="key != null"> AND key = #{key} </if>
+            <if test="value != null"> AND value = #{value} </if>
+            <if test="id != null"> AND id = #{id} </if>
+            <if test="showText != null"> AND show_text = #{showText} </if>
+            <if test="description != null"> AND description = #{description} </if>
+            <if test="dictHeadId != null"> AND dict_head_id = #{dictHeadId} </if>
+            <if test="sort != null"> AND sort = #{sort} </if>
+        </where>
+        LIMIT 1000 
+    </select>
+
+<!--auto generated Code-->
+    <delete id="delete">
+        DELETE FROM dictionary_value where id = #{id}
+    </delete>
+</mapper>

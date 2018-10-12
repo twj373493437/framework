@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wdkj.web.dao.dictionary.DictionaryMapper">
+
+<!--auto generated Code-->
+    <resultMap id="AllColumnMap" type="com.wdkj.web.model.dictionary.Dictionary">
+        <result column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="user_edit" property="userEdit"/>
+        <result column="sort" property="sort"/>
+        <result column="offset" property="offset"/>
+        <result column="limit" property="limit"/>
+    </resultMap>
+
+<!--auto generated Code-->
+    <sql id="all_column">
+        id,
+        name,
+        user_edit,
+        sort,
+        offset,
+        limit
+    </sql>
+
+<!--auto generated Code-->
+    <insert id="insert">
+        INSERT INTO dictionary
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.id != null"> id, </if>
+            <if test="pojo.name != null"> name, </if>
+            <if test="pojo.userEdit != null"> user_edit, </if>
+            <if test="pojo.sort != null"> sort, </if>
+            <if test="pojo.offset != null"> offset, </if>
+            <if test="pojo.limit != null"> limit, </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.id != null"> #{pojo.id}, </if>
+            <if test="pojo.name != null"> #{pojo.name}, </if>
+            <if test="pojo.userEdit != null"> #{pojo.userEdit}, </if>
+            <if test="pojo.sort != null"> #{pojo.sort}, </if>
+            <if test="pojo.offset != null"> #{pojo.offset}, </if>
+            <if test="pojo.limit != null"> #{pojo.limit}, </if>
+        </trim>
+    </insert>
+
+<!--auto generated Code-->
+    <insert id="insertList">
+        INSERT INTO dictionary(
+        <include refid="all_column"/>
+        )VALUES
+        <foreach collection="pojos" item="pojo" index="index" separator=",">
+            (
+            #{pojo.id},
+            #{pojo.name},
+            #{pojo.userEdit},
+            #{pojo.sort},
+            #{pojo.offset},
+            #{pojo.limit}
+            )
+        </foreach>
+    </insert>
+
+<!--auto generated Code-->
+    <update id="update">
+        UPDATE dictionary
+        <set>
+            <if test="pojo.id != null"> id = #{pojo.id}, </if>
+            <if test="pojo.name != null"> name = #{pojo.name}, </if>
+            <if test="pojo.userEdit != null"> user_edit = #{pojo.userEdit}, </if>
+            <if test="pojo.sort != null"> sort = #{pojo.sort}, </if>
+            <if test="pojo.offset != null"> offset = #{pojo.offset}, </if>
+            <if test="pojo.limit != null"> limit = #{pojo.limit} </if>
+        </set>
+         WHERE id = #{pojo.id}
+    </update>
+
+<!--auto generated Code-->
+    <select id="select" resultMap="AllColumnMap">
+        SELECT <include refid="all_column"/>
+        FROM dictionary
+        <where>
+            <if test="pojo.id != null"> AND id = #{pojo.id} </if>
+            <if test="pojo.name != null"> AND name = #{pojo.name} </if>
+            <if test="pojo.userEdit != null"> AND user_edit = #{pojo.userEdit} </if>
+            <if test="pojo.sort != null"> AND sort = #{pojo.sort} </if>
+            <if test="pojo.offset != null"> AND offset = #{pojo.offset} </if>
+            <if test="pojo.limit != null"> AND limit = #{pojo.limit} </if>
+        </where>
+        LIMIT 1000 
+    </select>
+
+<!--auto generated Code-->
+    <delete id="delete">
+        DELETE FROM dictionary where id = #{pojo.id}
+    </delete>
+</mapper>

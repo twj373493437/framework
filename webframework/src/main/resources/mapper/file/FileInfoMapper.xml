@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wdkj.web.dao.file.FileInfoMapper">
+
+<!--auto generated Code-->
+    <resultMap id="AllColumnMap" type="com.wdkj.web.model.file.FileInfo">
+        <result column="id" property="id"/>
+        <result column="md5" property="md5"/>
+        <result column="name" property="name"/>
+        <result column="store_path" property="storePath"/>
+        <result column="archived" property="archived"/>
+        <result column="ctime" property="ctime"/>
+    </resultMap>
+
+<!--auto generated Code-->
+    <sql id="all_column">
+        id,
+        md5,
+        name,
+        store_path,
+        archived,
+        ctime
+    </sql>
+
+<!--auto generated Code-->
+    <insert id="insert">
+        INSERT INTO file_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.id != null"> id, </if>
+            <if test="pojo.md5 != null"> md5, </if>
+            <if test="pojo.name != null"> name, </if>
+            <if test="pojo.storePath != null"> store_path, </if>
+            <if test="pojo.archived != null"> archived, </if>
+            <if test="pojo.ctime != null"> ctime, </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.id != null"> #{pojo.id}, </if>
+            <if test="pojo.md5 != null"> #{pojo.md5}, </if>
+            <if test="pojo.name != null"> #{pojo.name}, </if>
+            <if test="pojo.storePath != null"> #{pojo.storePath}, </if>
+            <if test="pojo.archived != null"> #{pojo.archived}, </if>
+            <if test="pojo.ctime != null"> #{pojo.ctime}, </if>
+        </trim>
+    </insert>
+
+<!--auto generated Code-->
+    <insert id="insertList">
+        INSERT INTO file_info(
+        <include refid="all_column"/>
+        )VALUES
+        <foreach collection="pojos" item="pojo" index="index" separator=",">
+            (
+            #{pojo.id},
+            #{pojo.md5},
+            #{pojo.name},
+            #{pojo.storePath},
+            #{pojo.archived},
+            #{pojo.ctime}
+            )
+        </foreach>
+    </insert>
+
+<!--auto generated Code-->
+    <update id="update">
+        UPDATE file_info
+        <set>
+            <if test="pojo.id != null"> id = #{pojo.id}, </if>
+            <if test="pojo.md5 != null"> md5 = #{pojo.md5}, </if>
+            <if test="pojo.name != null"> name = #{pojo.name}, </if>
+            <if test="pojo.storePath != null"> store_path = #{pojo.storePath}, </if>
+            <if test="pojo.archived != null"> archived = #{pojo.archived}, </if>
+            <if test="pojo.ctime != null"> ctime = #{pojo.ctime} </if>
+        </set>
+         WHERE id = #{pojo.id}
+    </update>
+
+<!--auto generated Code-->
+    <select id="select" resultMap="AllColumnMap">
+        SELECT <include refid="all_column"/>
+        FROM file_info
+        <where>
+            <if test="pojo.id != null"> AND id = #{pojo.id} </if>
+            <if test="pojo.md5 != null"> AND md5 = #{pojo.md5} </if>
+            <if test="pojo.name != null"> AND name = #{pojo.name} </if>
+            <if test="pojo.storePath != null"> AND store_path = #{pojo.storePath} </if>
+            <if test="pojo.archived != null"> AND archived = #{pojo.archived} </if>
+            <if test="pojo.ctime != null"> AND ctime = #{pojo.ctime} </if>
+        </where>
+        LIMIT 1000 
+    </select>
+
+<!--auto generated Code-->
+    <delete id="delete">
+        DELETE FROM file_info where id = #{pojo.id}
+    </delete>
+</mapper>

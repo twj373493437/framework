@@ -1,0 +1,79 @@
+spring:
+  profiles:
+    active: dev  #激活环境
+  http:
+    encoding:
+      charset: UTF-8
+      force: true
+  mvc:
+  thymeleaf:
+    enabled: false
+  freemarker:
+    enabled: false
+  aop:
+    auto: true
+    proxy-target-class: true
+  datasource:
+    primary:
+      platform: mysql
+      username: manager
+      password: manager
+      type: com.zaxxer.hikari.HikariDataSource
+      driver-class-name: com.mysql.jdbc.Driver
+      filters: stat
+      maxActive: 20
+      initialSize: 1
+      maxWait: 60000
+      minIdle: 1
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: select 'x' as v
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      minimumIdle: 3
+      poolPreparedStatements: true
+      maxOpenPreparedStatements: 20
+      jdbc-url: jdbc:mysql://192.168.0.101:3306/wd_framework?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&allowMultiQueries=true&useSSL=false
+mybatis:
+  mapperLocations: classpath:mapper/**/*.xml
+  executorType: SIMPLE
+tomcat:
+  accessLogEnabled: false
+  protocolHeader: x-forwarded-proto
+  remoteIpHeader: x-forwarded-for
+  basedir:
+  backgroundProcessorDelay: 60
+server:
+  servlet:
+    context-path: /test
+  port: 8083
+logging:
+  config: classpath:logback.xml
+#其他配置
+file:
+ dir: C:/uploads
+ path: C:/uploadimg/
+ Excel: C:/excel
+sys:
+ loginViewUrl: /login
+---
+#开发环境
+spring:
+ profiles: dev
+server:
+  port: 8085
+  address: 127.0.0.1
+---
+#测试环境
+spring:
+ profiles: test
+server:
+  port: 8080
+  address: 127.0.0.1
+---
+#生产环境
+spring:
+ profiles: production
+server:
+  port: 80
